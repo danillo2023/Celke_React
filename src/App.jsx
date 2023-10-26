@@ -1,25 +1,14 @@
-import React from "react";
-import Header from "./components/Header";
-import Comment from "./components/Comment";
+import React, { useState } from "react";
+
 
 function App() {
 
-  const comment = {
-    date: new Date(),
-    text:'Não faça nada em troca ou pensando em colher frutos , apenas faça o bem ',
-    author: {
-      name:'Willian',
-      avatarUrl:'https://placekitten.com/g/64/64'
-    }
-  }
+  const [nome , setNome] = useState('Willian');
+
   return (
     <div >
-     <Header />
-     <Comment  date={comment.date}
-     text={comment.text} 
-     author={comment.author}
-      />
-  
+      <p>{nome}</p>
+  <button onClick={() => setNome("Danillog Gomes Da Silva")}>Alterar</button>
     </div>
  
   );
