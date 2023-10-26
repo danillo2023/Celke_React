@@ -1,36 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 
 function App() {
-  const [produtoId, setProdutoID] = useState ('3');
-  const [produtoNome, setProdutoNome] = useState('');
-  const [data, setData] = useState({
-    nome: "",
-    preco: "" ,
+
+  const [dados, setDados ] = useState({
+    nome_usuario:"",
+    email_usuario:''
+  });
+
+  const valorInput = e => setDados({...dados, [e.target.name]: e.target.value});
 
 
-  })
-
-  function buscarProduto(){
-    console.log("Procurar produto");
-   //setProdutoID(4); //Ao setar o novo valor executa novamente o useEffect
-    setProdutoNome("Curso de React");
-    setData({
-      nome: "Curso de Node.js",
-      preco: 249 ,
-
-    });
+  const cadUsuario = e =>{
+    e.preventDefault();
+    //Maninylar os dados recebidos , por exemplo, enviar os dados para API
+    console.log("Nome: " + dados.nome_usuario);
+    console.log("E-mail: " + dados.email_usuario);
   }
-
-  useEffect(() => {
-    buscarProduto();
-  },[produtoId]);
 
   return (
     <div>
-      <p>Listar produto</p>
-      <p>Produto: {produtoNome} </p>
-      <p>{data.preco}</p>
+      <h1>Cadastrar</h1>
+      <form onSubmit={cadUsuario}>
+        <label>Nome: </label>
+        <input type="text" name="nome_usuario" placeholder="Nome do cliente" onChange={valorInput}/> <br /> <br />
 
+        <label>E-mail: </label>
+        <input type="email" name="email_usuario" placeholder="Seu email" onChange={valorInput} /> <br /> <br />
+
+        <button type="submit">Cadastrar</button>
+      </form>
     </div>
   );
 }
