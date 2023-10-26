@@ -1,16 +1,37 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [produtoId, setProdutoID] = useState ('3');
+  const [produtoNome, setProdutoNome] = useState('');
+  const [data, setData] = useState({
+    nome: "",
+    preco: "" ,
 
-  const [nome , setNome] = useState('Willian');
+
+  })
+
+  function buscarProduto(){
+    console.log("Procurar produto");
+   //setProdutoID(4); //Ao setar o novo valor executa novamente o useEffect
+    setProdutoNome("Curso de React");
+    setData({
+      nome: "Curso de Node.js",
+      preco: 249 ,
+
+    });
+  }
+
+  useEffect(() => {
+    buscarProduto();
+  },[produtoId]);
 
   return (
-    <div >
-      <p>{nome}</p>
-  <button onClick={() => setNome("Danillog Gomes Da Silva")}>Alterar</button>
+    <div>
+      <p>Listar produto</p>
+      <p>Produto: {produtoNome} </p>
+      <p>{data.preco}</p>
+
     </div>
- 
   );
 }
 
